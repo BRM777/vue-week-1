@@ -5,23 +5,22 @@ let app = new Vue({
         image: "./img/vmSocks-green-onWhite.jpg",
         altText: "A pair of socks",
         inStock: true,
+        inStock: false,
         details: ['80% cotton', '20% polyester', 'Gender-neutral'],
         variants: [
             {
                 variantId: 2234,
-                variantColor: 'green'
                 variantColor: 'green',
                 variantImage: "./img/vmSocks-green-onWhite.jpg",
             },
             {
                 variantId: 2235,
-                variantColor: 'blue'
                 variantColor: 'blue',
                 variantImage: "./img/vmSocks-blue-onWhite.jpg",
             }
         ],
-        sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
         cart: 0,
+        cart: 0
     },
     methods: {
         addToCart() {
@@ -31,10 +30,11 @@ let app = new Vue({
             if(this.cart){
                 this.cart -=1;
             }
+            this.cart += 1
         },
         updateProduct(variantImage) {
             this.image = variantImage;
+            this.image = variantImage
         }
     }
 })
-0 comments on commit de32e43
