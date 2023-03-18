@@ -1,7 +1,7 @@
 let eventBus = new Vue()
 
 Vue.component('product-review', {
-    template: `
+	template: `
     <form class="review-form" @submit.prevent="onSubmit">
 <p v-if="errors.length">
  <b>Please correct the following error(s):</b>
@@ -32,45 +32,45 @@ Vue.component('product-review', {
  </p>
 </form>
     `,
-    data() {
-        return {
-            name: null,
-            review: null,
-            rating: null,
-            errors: []
-        }
-    },
-    methods: {
-        onSubmit() {
-            this.errors = []
-            if (this.name && this.review && this.rating) {
-                let productReview = {
-                    name: this.name,
-                    review: this.review,
-                    rating: this.rating
-                }
-                eventBus.$emit('review-submitted', productReview);
-                this.name = null
-                this.review = null
-                this.rating = null
-            }
-            else {
-                if(!this.name) this.errors.push("Name required.");
-                if(!this.review) this.errors.push("Review required.");
-                if(!this.rating) this.errors.push("Rating required.");
-            }
-        }
-    }
+	data() {
+		return {
+			name: null,
+			review: null,
+			rating: null,
+			errors: []
+		}
+	},
+	methods: {
+		onSubmit() {
+			this.errors = []
+			if (this.name && this.review && this.rating) {
+				let productReview = {
+					name: this.name,
+					review: this.review,
+					rating: this.rating
+				}
+				eventBus.$emit('review-submitted', productReview);
+				this.name = null
+				this.review = null
+				this.rating = null
+			}
+			else {
+				if(!this.name) this.errors.push("Name required.");
+				if(!this.review) this.errors.push("Review required.");
+				if(!this.rating) this.errors.push("Rating required.");
+			}
+		}
+	}
 })
 
 Vue.component('product', {
-    props: {
-        premium: {
-            type: Boolean,
-            required: true
-        }
-    },
-    template: `
+	props: {
+		premium: {
+			type: Boolean,
+			required: true
+		}
+	},
+	template: `
         <div class="product">
             <div class="product-image">
                 <img :src="image" :alt="altText"/>
@@ -101,29 +101,29 @@ Vue.component('product', {
         </div>
  `,
 <div class="product">
-    <div class="product-image">
-        <img :src="image" :alt="altText"/>
-    </div>
-    <div class="product-info">
-        <h1>{{ title }}</h1>
-        <p v-if="inStock">In stock</p>
-        <p v-else>Out of Stock</p>
-        <info-tabs :shipping="shipping" :details="details"></info-tabs>
-    <p>Shipping: {{ shipping }}</p>
-    <div
-        class="color-box"
-        v-for="(variant, index) in variants"
-    :key="variant.variantId"
-    :style="{ backgroundColor:variant.variantColor }"
-    @mouseover="updateProduct(index)"
-    ></div>
+	<div class="product-image">
+		<img :src="image" :alt="altText"/>
+	</div>
+	<div class="product-info">
+		<h1>{{ title }}</h1>
+		<p v-if="inStock">In stock</p>
+		<p v-else>Out of Stock</p>
+		<info-tabs :shipping="shipping" :details="details"></info-tabs>
+	<p>Shipping: {{ shipping }}</p>
+	<div
+		class="color-box"
+		v-for="(variant, index) in variants"
+	:key="variant.variantId"
+	:style="{ backgroundColor:variant.variantColor }"
+	@mouseover="updateProduct(index)"
+	></div>
 
 <button
-    v-on:click="addToCart"
+	v-on:click="addToCart"
                    :disabled="!inStock"
 :class="{ disabledButton: !inStock }"
-    >
-    Add to cart
+	>
+	Add to cart
 </button>
 </div>
 <product-tabs :reviews="reviews"></product-tabs>
@@ -209,29 +209,29 @@ Vue.component('product-tabs', {
     },
     template: `
 <form class="review-form" @submit.prevent="onSubmit">
-    <p class="error" v-if="errors.length">
-    <b>Please correct the following error(s):</b>
+	<p class="error" v-if="errors.length">
+	<b>Please correct the following error(s):</b>
 <ul>
-    <li v-for="error in errors">{{ error }}</li>
+	<li v-for="error in errors">{{ error }}</li>
 </ul>
 </p>
 <p>
-    <label for="name">Name:</label>
-    <input id="name" v-model="name">
+	<label for="name">Name:</label>
+	<input id="name" v-model="name">
 </p>
 <p>
-    <label for="review">Review:</label>
-    <textarea id="review" v-model="review"></textarea>
+	<label for="review">Review:</label>
+	<textarea id="review" v-model="review"></textarea>
 </p>
 <p>
-    <label for="rating">Rating:</label>
-    <select id="rating" v-model.number="rating">
-        <option>5</option>
-        <option>4</option>
-        <option>3</option>
-        <option>2</option>
-        <option>1</option>
-    </select>
+	<label for="rating">Rating:</label>
+	<select id="rating" v-model.number="rating">
+		<option>5</option>
+		<option>4</option>
+		<option>3</option>
+		<option>2</option>
+		<option>1</option>
+	</select>
 </p>
 <p>Would you recommend this product?</p>
 <label for="recommendation">Yes</label>
@@ -254,17 +254,17 @@ Vue.component('product-tabs', {
 >{{ tab }}</span>
 </ul>
 <div v-show="selectedTab === 'Reviews'">
-    <p v-if="!reviews.length">There are no reviews yet.</p>
-    <ul v-else>
-        <li v-for="(review, index) in reviews" :key="index">
-        <p>{{ review.name }}</p>
-        <p>Rating:{{ review.rating }}</p>
-        <p>{{ review.review }}</p>
-    </li>
+	<p v-if="!reviews.length">There are no reviews yet.</p>
+	<ul v-else>
+		<li v-for="(review, index) in reviews" :key="index">
+		<p>{{ review.name }}</p>
+		<p>Rating:{{ review.rating }}</p>
+		<p>{{ review.review }}</p>
+	</li>
 </ul>
 </div>
 <div v-show="selectedTab === 'Make a Review'">
-    <product-review></product-review>
+	<product-review></product-review>
 </div>
 
 </div>
@@ -320,15 +320,15 @@ Vue.component('info-tabs', {
 v-for="(tab, index) in tabs"
 @click="selectedTab = tab"
 :key="tab"
-    >{{ tab }}</span>
+	>{{ tab }}</span>
 </ul>
 <div v-show="selectedTab === 'Shipping'">
-    <p>{{ shipping }}</p>
+	<p>{{ shipping }}</p>
 </div>
 <div v-show="selectedTab === 'Details'">
-    <ul>
-        <li v-for="detail in details">{{ detail }}</li>
-    </ul>
+	<ul>
+		<li v-for="detail in details">{{ detail }}</li>
+	</ul>
 </div>
 
 </div>
